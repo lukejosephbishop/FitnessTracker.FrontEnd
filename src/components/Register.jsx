@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
-
+import {useHistory} from "react-router-dom"
 import { registerUser } from "../api";
 import { storeToken} from "../auth";
 
 export default function Register() {
     const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  const history = useHistory();
     return (
         <form
           className="login-form"
           className="login-form"
           onSubmit={async (event) => {
             event.preventDefault();
-            setIsLoading(true);
+            
     
             try {
               const results = await registerUser(userName, password);
     
               storeToken(results.token);
-              setIsLoggedIn(true);
+              
               setUserName("");
               setPassword("");
               history.push("/posts");
             } catch (error) {
               console.log(error);
-            } finally {
-              setIsLoading(false);
-            }
+            } 
           }}
         >
           <div className="container">

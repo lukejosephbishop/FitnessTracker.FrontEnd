@@ -29,9 +29,9 @@ export default function Routines(props) {
         defaultRoutines={defaultRoutines}
       />
       {isLoggedIn === true ? (
-        <div className="post-actionbuttons">
+        <div className="routine-actionbuttons">
           <button
-            className="create-post"
+            className="create-routines"
             onClick={(event) => {
               event.preventDefault();
               window.location.href = "/newpost";
@@ -41,7 +41,7 @@ export default function Routines(props) {
             Create Post
           </button>
           <button
-            className="edit-mypost"
+            className="edit-myRoutiness"
             onClick={(event) => {
               event.preventDefault();
               window.location.href = "/editpost";

@@ -23,7 +23,7 @@ export default function Login({userName, setUserName}) {
 
             setPassword("");
 
-            history.push("/posts");
+            history.push("/myroutines");
           } catch (error) {
             console.log(error);
           } finally {

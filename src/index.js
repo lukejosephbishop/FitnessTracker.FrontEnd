@@ -42,9 +42,9 @@ const App = () => {
         <Route path="/register">
           <Register/>
         </Route>
-        <Route path="/activities">
-          <Activities />
-        </Route>
+        {/* <Route path="/activities">
+          <Activities /> */}
+        {/* </Route> */}
         <Route path="/routines">
           <Routines isPublic={isPublic}
             setIsPublic={setIsPublic}
