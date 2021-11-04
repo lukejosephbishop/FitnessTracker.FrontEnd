@@ -26,10 +26,9 @@ const App = () => {
   const [userName, setUserName] = useState("");
   const [searchWord, setSearchWord] = useState("");
   const [routineId, setRoutineId] = useState("");
-  
+
   const [defaultRoutines, setDefaultRoutines] = useState([]);
- 
-  
+
   const [isPublic, setIsPublic] = useState(false);
   return (
     <div id="App">
@@ -40,13 +39,14 @@ const App = () => {
         </Route>
 
         <Route path="/register">
-          <Register/>
+          <Register />
         </Route>
-        {/* <Route path="/activities">
-          <Activities /> */}
-        {/* </Route> */}
+        <Route path="/activities">
+          <Activities /> 
+        </Route>
         <Route path="/routines">
-          <Routines isPublic={isPublic}
+          <Routines
+            isPublic={isPublic}
             setIsPublic={setIsPublic}
             searchWord={searchWord}
             setSearchWord={setSearchWord}
@@ -58,7 +58,8 @@ const App = () => {
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
             setSearchWord={setSearchWord}
-            searchWord={searchWord}/>
+            searchWord={searchWord}
+          />
         </Route>
         <Route path="/">
           {" "}
