@@ -6,7 +6,7 @@ import {fetchActivities} from "../api"
 
 
 
-export default function Actities(props) {
+export default function Activities(props) {
 
     const {
         setSearchWord,
@@ -17,8 +17,8 @@ export default function Actities(props) {
       } = props;
 
     useEffect(async () => {
-        const routines = await fetchActivities();
-        // setDefaultActivities(activity);
+        const activity = await fetchActivities();
+        setDefaultActivities(activity);
         console.log(fetchActivities())
       }, []);
     

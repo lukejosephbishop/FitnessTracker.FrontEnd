@@ -15,10 +15,11 @@ import {
   Activities,
   NewActivity,
   NewRoutine,
-  Profile,
+  MyRoutines,
   Register,
   Routines,
 } from "./components";
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,10 +43,10 @@ const App = () => {
         </Route>
 
         <Route path="/register">
-          <Register />
+          <Register setIsLoggedIn = {setIsLoggedIn}/>
         </Route>
         <Route path="/activities">
-          <Activities /> 
+          <Activities setIsLoggedIn={setIsLoggedIn}/> 
           <Register setIsLoggedIn={setIsLoggedIn}/>
         </Route>
         <Route path="/routines">
@@ -67,6 +68,9 @@ const App = () => {
             defaultActivities={setDefaultActivities}
              setDefaultActivities={setDefaultActivities}/>
         </Route>
+        <Route path="/myroutines">
+          <MyRoutines setIsLoggedIn={setIsLoggedIn}/>
+          </Route>
         <Route path="/">
           {" "}
           <Home />

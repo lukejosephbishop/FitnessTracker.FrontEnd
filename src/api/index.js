@@ -73,13 +73,13 @@ export async function logOut() {
 
 export async function fetchActivities() {
   try {
-    const response = await fetch(`${BASE}/api/activities`, {
+    const {data} = await axios.get(`${BASE}/api/activities`, {
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const result = await response.json();
-    return result;
+    console.log(data)
+    return data
   } catch (error) {
     console.log(error);
   }
