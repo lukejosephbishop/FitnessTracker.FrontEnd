@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Search from "./Search";
 
-import { fetchRoutines } from "../api";
+import { fetchActivities, fetchRoutines } from "../api";
 import { Link } from "react-router-dom";
 import { storeRoutineId } from "../auth";
 
@@ -9,6 +9,8 @@ export default function Routines(props) {
   const {
     defaultRoutines,
     setDefaultRoutines,
+    defaultActivities,
+    setDefaultActivities,
     isLoggedIn,
     userName,
 
@@ -19,6 +21,8 @@ export default function Routines(props) {
   useEffect(async () => {
     const routines = await fetchRoutines();
     setDefaultRoutines(routines);
+    const activities = await fetchActivities();
+    setDefaultActivities();
   }, []);
 
   return (
@@ -61,7 +65,7 @@ export default function Routines(props) {
             isPublic, 
             name, 
             goal, 
-            activity 
+            activities
         } = post;
 
 
@@ -73,12 +77,12 @@ export default function Routines(props) {
             </div>
             <div >
               <p>{goal}</p>
-              <p>{activity}</p>
+              <p>{activities}</p>
               
             </div>
-            {/* {(userName != username) & (isLoggedIn === true) ? (
+            {(userName != creatorName) & (isLoggedIn === true) ? (
               <div>
-                <Link to={`/routines/${username}`}>
+                <Link to={`/routines/${creatorName}`}>
                   <button
                     className="submit-button"
                     onClick={(event) => {
@@ -89,7 +93,7 @@ export default function Routines(props) {
                   </button>
                 </Link>
               </div>
-            ) : null} */}
+            ) : null}
           </div>
         );
       })}
