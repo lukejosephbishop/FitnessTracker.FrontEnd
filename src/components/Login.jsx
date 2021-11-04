@@ -1,33 +1,44 @@
 import React, { useEffect, useState } from "react";
 
 import { loginUser } from "../api";
-import { storeToken} from "../auth";
+import { storeToken, getToken, storeUserName } from "../auth";
+import { useHistory } from "react-router-dom";
 
 
-export default function Login({userName, setUserName}) {
+export default function Login(props) {
+  const {userName, isLoggedIn, setUserName, setIsLoggedIn} = props
     const [password, setPassword] = useState("");
+
+    const history = useHistory();
+
+    useEffect(() => {
+      const TOKEN = getToken();
+      if (TOKEN) {
+        setIsLoggedIn(true);
+      }
+    }, []);
+
+
+if (isLoggedIn === false) {
     return (
-        <div>
             <form
         className="login-form"
         onSubmit={async (event) => {
           event.preventDefault();
-          setIsLoading(true);
-
+          
+        
           try {
             const results = await loginUser(userName, password);
-            results, "in login";
+            console.log(results, "!!!!!!")
             storeToken(results.token);
             storeUserName(userName);
             setIsLoggedIn(true);
-
+            console.log(IsLoggedIn)
             setPassword("");
 
             history.push("/myroutines");
           } catch (error) {
             console.log(error);
-          } finally {
-            setIsLoading(false);
           }
         }}
       >
@@ -75,7 +86,9 @@ export default function Login({userName, setUserName}) {
           </label>
           Have you created an Account?<a href="/register"> Sign up here.</a>
         </div>
-      </form>
-        </div>
-    )
+       </form>
+    );
+  } else {
+    return null;
+  }
 }

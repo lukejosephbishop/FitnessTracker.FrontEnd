@@ -28,19 +28,20 @@ const App = () => {
   const [routineId, setRoutineId] = useState("");
   
   const [defaultRoutines, setDefaultRoutines] = useState([]);
+  const [defaultActivities, setDefaultActivities] = useState([]);
  
   
   const [isPublic, setIsPublic] = useState(false);
   return (
     <div id="App">
-      <Navbar />
+      <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
       <Switch>
         <Route path="/login">
-          <Login userName={userName} setUserName={setUserName} />
+          <Login userName={userName} setUserName={setUserName} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
         </Route>
 
         <Route path="/register">
-          <Register/>
+          <Register setIsLoggedIn={setIsLoggedIn}/>
         </Route>
         {/* <Route path="/activities">
           <Activities /> */}
@@ -58,7 +59,9 @@ const App = () => {
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
             setSearchWord={setSearchWord}
-            searchWord={searchWord}/>
+            searchWord={searchWord}
+            defaultActivities={setDefaultActivities}
+             setDefaultActivities={setDefaultActivities}/>
         </Route>
         <Route path="/">
           {" "}
