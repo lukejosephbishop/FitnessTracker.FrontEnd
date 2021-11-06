@@ -50,10 +50,11 @@ if (isLoggedIn === false) {
         <div className="imgcontainer">
           <i className="far fa-user fa-5x"></i>
         </div>
-
+        
         <div className="login-container">
+          <div className="usernameLogin">
           <label htmlFor="uname">
-            <b>Username</b>
+            <b>Username:</b>
           </label>
           <input
             type="text"
@@ -63,11 +64,13 @@ if (isLoggedIn === false) {
             value={userName}
             onChange={(event) => {
               setUserName(event.target.value);
-            
+           
             }}
           />
+          </div>
+          <div className="passwordLogin">
           <label htmlFor="psw">
-            <b>Password</b>
+            <b>Password: </b>
           </label>
           <input
             type="password"
@@ -79,6 +82,7 @@ if (isLoggedIn === false) {
               setPassword(event.target.value);
             }}
           />
+          </div>
           <button className="submit-button" type="submit">
             Login
           </button>

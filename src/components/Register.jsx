@@ -39,8 +39,9 @@ export default function Register({setIsLoggedIn}) {
             </div>
             <p>Please fill in this form to create an account.</p>
             <>
+            <div className="registerUsername">
               <label htmlFor="email">
-                <b>Username</b>
+                <b>Username:</b>
               </label>
               <input
                 type="text"
@@ -53,7 +54,7 @@ export default function Register({setIsLoggedIn}) {
                   setUserName(event.target.value);
                 }}
               />
-    
+              </div>
               <label htmlFor="psw">
                 <b>Password</b>
               </label>

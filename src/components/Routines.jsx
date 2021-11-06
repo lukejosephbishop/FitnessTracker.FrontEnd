@@ -32,11 +32,13 @@ setIsLoggedIn,
 
   return (
     <div className="content">
+      <div className="searchbar">
       <Search
         setSearchWord={setSearchWord}
         searchWord={searchWord}
         defaultRoutines={defaultRoutines}
       />
+      </div>
       {isLoggedIn === true ? (
         <div className="routine-actionbuttons">
           <button
