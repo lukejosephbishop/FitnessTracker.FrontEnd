@@ -43,17 +43,8 @@ const App = () => {
         </Route>
 
         <Route path="/register">
-<<<<<<< HEAD
-          <Register />
-        </Route>
-        {/* <Route path="/activities">
-          <Activities /> 
-          <Register setIsLoggedIn={setIsLoggedIn}/>
-        </Route> */}
-=======
           <Register setIsLoggedIn = {setIsLoggedIn}/>
         </Route>
->>>>>>> 208cfbd490d8d9b1d50ec567fa4caf61572654a4
         <Route path="/routines">
           <Routines
             isPublic={isPublic}

@@ -24,24 +24,6 @@ defaultActivities
     
 
     return (
-<<<<<<< HEAD
-        <div>
-            <Search
-            setSearchWord={setSearchWord}
-            searchWord={searchWord}
-            />
-
-            <div>
-                <h1>Activities</h1>
-                <div className="activityList">
-                    <h3>Activity Name:</h3>
-                    <p>Goal:</p>
-                    <p>Creator:</p>
-                </div>
-
-
-            </div>
-=======
         <div className="content">
             {defaultActivities.map((activity, indx) => {
   
@@ -59,7 +41,6 @@ defaultActivities
             })}
               
             
->>>>>>> 208cfbd490d8d9b1d50ec567fa4caf61572654a4
             
         </div>
     )
