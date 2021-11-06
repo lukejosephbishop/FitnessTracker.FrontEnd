@@ -1,5 +1,4 @@
 import React from 'react'
-import Search from './Search'
 import {useEffect, useState} from "react";
 import {fetchActivities} from "../api"
 
@@ -18,6 +17,7 @@ defaultActivities
 
     useEffect(async () => {
         const activity = await fetchActivities();
+        condsole.log(activity)
         setDefaultActivities(activity);
         
       }, []);
@@ -26,12 +26,9 @@ defaultActivities
     return (
         <div className="content">
             {defaultActivities.map((activity, indx) => {
-  
-        const { name, description } =
-          activity;
+
 
           
-        
               return(
                 <div className="activity">
                 <h1>{activity.name}</h1>
