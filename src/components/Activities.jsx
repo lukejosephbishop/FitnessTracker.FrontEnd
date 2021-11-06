@@ -6,7 +6,7 @@ import {fetchActivities} from "../api"
 
 
 
-export default function Actities(props) {
+export default function Activities(props) {
 
     const {
         setSearchWord,
@@ -29,9 +29,16 @@ export default function Actities(props) {
             setSearchWord={setSearchWord}
             searchWord={searchWord}
             />
+
             <div>
                 <h1>Activities</h1>
-                
+                <div className="activityList">
+                    <h3>Activity Name:</h3>
+                    <p>Goal:</p>
+                    <p>Creator:</p>
+                </div>
+
+
             </div>
             
         </div>

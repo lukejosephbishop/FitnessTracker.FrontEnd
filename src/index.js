@@ -44,10 +44,10 @@ const App = () => {
         <Route path="/register">
           <Register />
         </Route>
-        <Route path="/activities">
+        {/* <Route path="/activities">
           <Activities /> 
           <Register setIsLoggedIn={setIsLoggedIn}/>
-        </Route>
+        </Route> */}
         <Route path="/routines">
           <Routines
             isPublic={isPublic}
