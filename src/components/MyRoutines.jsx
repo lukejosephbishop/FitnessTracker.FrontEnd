@@ -37,7 +37,7 @@ export default function MyRoutines({ setIsLoggedIn, setRoutineId, routineId }) {
             <p>{goal}</p>
             <div>
             <div>
-              <Link to={`/routine/${id}`}>
+              <Link to={`/routines/${id}`}>
                 <button
                   
                   onClick={(event) => {

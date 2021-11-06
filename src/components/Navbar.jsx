@@ -11,7 +11,7 @@ export default function Navbar(props) {
   return (
     <nav className="navbar">
       <div>
-        <Link className="links" to="/home">Home</Link>
+        <Link className="links" to="/">Home</Link>
         <Link className="links" to="/routines">Routines</Link>
         <Link className="links" to="/activities">Activities</Link>
         {isLoggedIn ? (

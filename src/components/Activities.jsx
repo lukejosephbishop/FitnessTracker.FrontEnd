@@ -17,18 +17,16 @@ defaultActivities
 
     useEffect(async () => {
         const activity = await fetchActivities();
-        condsole.log(activity)
+        console.log(activity)
         setDefaultActivities(activity);
         
       }, []);
     
 
     return (
-        <div className="content">
+        <div>
             {defaultActivities.map((activity, indx) => {
 
-
-          
               return(
                 <div className="activity">
                 <h1>{activity.name}</h1>
