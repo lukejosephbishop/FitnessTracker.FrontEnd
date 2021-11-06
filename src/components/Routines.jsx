@@ -61,10 +61,10 @@ setIsLoggedIn,
           </button>
         </div>
       ) : null}
-      {defaultRoutines.map((post, indx) => {
-       console.log(post)
+      {defaultRoutines.map((routines, indx) => {
+       console.log(routines)
         const { id, creatorId, creatorName, isPublic, name, goal, activities } =
-          post;
+          routines;
 
           const activityName = activities.name;
           const activityDescription = activities.description;

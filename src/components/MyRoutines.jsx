@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchMe } from "../api";
 import { getToken, getUserName, getRoutineId } from "../auth";
 
-export default function MyRoutines({setIsLoggedIn}) {
-
+export default function MyRoutines({ setIsLoggedIn }) {
   const [personalData, setPersonalData] = useState();
 
   useEffect(async () => {
@@ -12,11 +11,39 @@ export default function MyRoutines({setIsLoggedIn}) {
       setIsLoggedIn(true);
     }
     const myData = fetchMe();
-setPersonalData(myData);
+    setPersonalData(myData);
   }, []);
-  return ( 
-  <div>
+  return (
+    <div>
+      {personalData.map((routines, indx) => {
+        console.log(routines);
+        const { id, creatorId, creatorName, isPublic, name, goal, activities } =
+          routines;
 
-  </div>
-  )
+        return (
+          <div className="routine" key={`routine-${indx}`}>
+            <div>
+              <h1>{name}</h1>
+              <h2>{creatorName}</h2>
+            </div>
+            <p>{goal}</p>
+            <div>
+              {" "}
+              {activities.map((activity, indx) => {
+                return (
+                  <div className="activity">
+                    {" "}
+                    Activity
+                    <h4>{activity.name}</h4>
+                    <p>{activity.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+      ;
+    </div>
+  );
 }

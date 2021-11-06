@@ -159,6 +159,7 @@ export async function fetchRoutines() {
 // CREATE NEW ROUTINE
 
 export async function createNewRoutine(name, goal, isPublic) {
+  const TOKEN = getToken();
   try {
     const data = await fetch(`${BASE}/api/routines`, {
       method: "POST",
@@ -166,12 +167,12 @@ export async function createNewRoutine(name, goal, isPublic) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${TOKEN}`,
       },
-  body: JSON.stringify({
-   post: {
+  body: JSON.stringify(
+   {
     name: name,
     goal: goal,
     isPublic: isPublic,}
-  })
+  )
 }).then(response => response.json())
   .then(result => {
     return result;
