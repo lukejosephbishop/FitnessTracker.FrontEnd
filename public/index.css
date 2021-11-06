@@ -1,0 +1,27 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.routine{
+background-color: rgb(146, 5, 5);
+padding: 1rem;
+margin-bottom: 1rem;
+}
+
+.activity{
+    background-color: grey;
+}
+.content{
+    margin-right: 20rem;
+margin-left: 10rem;
+}
+
+.navbar{
+    display: flex;
+  justify-content: flex-end;
+}
+.navbar .links {
+    margin-right: 1rem;
+}

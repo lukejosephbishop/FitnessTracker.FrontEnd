@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { loginUser } from "../api";
-import { storeToken, getToken, storeUserName } from "../auth";
+import { storeToken, getToken, storeUserName, } from "../auth";
 import { useHistory } from "react-router-dom";
 
 
@@ -25,6 +25,7 @@ if (isLoggedIn === false) {
         className="login-form"
         onSubmit={async (event) => {
           event.preventDefault();
+
           
         
           try {
@@ -33,13 +34,13 @@ if (isLoggedIn === false) {
             storeToken(results.token);
             storeUserName(userName);
             setIsLoggedIn(true);
-            console.log(IsLoggedIn)
             setPassword("");
-
+    
             history.push("/myroutines");
+            alert("you are logged in!")
           } catch (error) {
             console.log(error);
-          }
+          } 
         }}
       >
         <h1 className="login-title">

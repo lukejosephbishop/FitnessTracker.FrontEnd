@@ -9,19 +9,19 @@ export default function Navbar(props) {
 
 
   return (
-    <nav className="NavbarMenu">
+    <nav className="navbar">
       <div>
-        <Link to="/home">Home</Link>
-        <Link to="/routines">Routines</Link>
-        <Link to="/activities">Activities</Link>
+        <Link className="links" to="/home">Home</Link>
+        <Link className="links" to="/routines">Routines</Link>
+        <Link className="links" to="/activities">Activities</Link>
         {isLoggedIn ? (
-          <Link className="nav-links" to="/myroutines">
-            My Routines
+          <Link className="links" to="/myroutines">
+            MyRoutines
           </Link>
         ) : null}
         {isLoggedIn ? (
           <Link
-            className="nav-links"
+            className="links"
             to="/login"
             onClick={(event) => {
               const course = confirm("Are you sure you want to log out?");
@@ -34,11 +34,11 @@ export default function Navbar(props) {
               }
             }}
           >
-            {isLoggedIn ? "LogOut" : "LogIn"}
+            {isLoggedIn ? "LogOut" : "LogIn/SignUp"}
           </Link>
         ) : (
-          <Link className="nav-links" to="/login">
-            LogIn
+          <Link className="links" to="/login">
+            Login/SignUp
           </Link>
         )}
       </div>

@@ -3,7 +3,7 @@ import Search from "./Search";
 
 import { fetchActivities, fetchRoutines } from "../api";
 import { Link } from "react-router-dom";
-import { storeRoutineId } from "../auth";
+import { storeRoutineId, getToken } from "../auth";
 
 export default function Routines(props) {
   const {
@@ -13,7 +13,7 @@ export default function Routines(props) {
     setDefaultActivities,
     isLoggedIn,
     userName,
-
+setIsLoggedIn,
     setSearchWord,
     searchWord,
   } = props;
@@ -21,12 +21,17 @@ export default function Routines(props) {
   useEffect(async () => {
     const routines = await fetchRoutines();
     setDefaultRoutines(routines);
-    const activities = await fetchActivities();
-    setDefaultActivities();
+    const allActivities = await fetchActivities();
+    setDefaultActivities(allActivities);
+    const TOKEN = getToken();
+    if (TOKEN) {
+      setIsLoggedIn(true);
+    }
   }, []);
 
+
   return (
-    <div className="post-page">
+    <div className="content">
       <Search
         setSearchWord={setSearchWord}
         searchWord={searchWord}
@@ -35,58 +40,59 @@ export default function Routines(props) {
       {isLoggedIn === true ? (
         <div className="routine-actionbuttons">
           <button
-            className="create-routines"
+  
             onClick={(event) => {
               event.preventDefault();
-              window.location.href = "/newpost";
+              window.location.href = "/newroutine";
             }}
           >
             {" "}
-            Create Post
+            Create Routine
           </button>
           <button
             className="edit-myRoutiness"
             onClick={(event) => {
               event.preventDefault();
-              window.location.href = "/editpost";
+              window.location.href = "/myroutines";
             }}
           >
             {" "}
-            Edit my Posts
+            Edit my Routine
           </button>
         </div>
       ) : null}
-      {defaultRoutines.map((post, indx) => {
-        console.log(defaultRoutines);
-        const {
-            id, 
-            creatorId, 
-            creatorName,
-            isPublic, 
-            name, 
-            goal, 
-            activities
-        } = post;
+      {defaultRoutines.map((routines, indx) => {
+       console.log(routines)
+        const { id, creatorId, creatorName, isPublic, name, goal, activities } =
+          routines;
 
-
+          const activityName = activities.name;
+          const activityDescription = activities.description;
+        
         return (
-          <div key={`routine-${indx}`}>
-            <div >
+          <div className="routine" key={`routine-${indx}`}>
+            <div> 
               <h1>{name}</h1>
               <h2>{creatorName}</h2>
             </div>
-            <div >
-              <p>{goal}</p>
-              <p>{activities}</p>
-              
-            </div>
+            <p>{goal}</p>
+            <div> {activities.map((activity, indx)=>{
+              return(
+                <div className="activity"> Activity
+                <h4>{activity.name}</h4>
+              <p>{activity.description}</p>
+              </div>
+              )
+            })}
+              </div>
+            
             {(userName != creatorName) & (isLoggedIn === true) ? (
               <div>
                 <Link to={`/routines/${creatorName}`}>
                   <button
                     className="submit-button"
                     onClick={(event) => {
-                      storeRoutineId(_id);
+                      storeRoutineId(id);
                     }}
                   >
                     Send Message

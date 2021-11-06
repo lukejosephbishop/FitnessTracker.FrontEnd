@@ -12,18 +12,19 @@ export default function Activities(props) {
         setSearchWord,
         searchWord,
         setDefaultActivities,
-
+defaultActivities
 
       } = props;
 
     useEffect(async () => {
-        const routines = await fetchActivities();
-        // setDefaultActivities(activity);
-        console.log(fetchActivities())
+        const activity = await fetchActivities();
+        setDefaultActivities(activity);
+        
       }, []);
     
 
     return (
+<<<<<<< HEAD
         <div>
             <Search
             setSearchWord={setSearchWord}
@@ -40,6 +41,25 @@ export default function Activities(props) {
 
 
             </div>
+=======
+        <div className="content">
+            {defaultActivities.map((activity, indx) => {
+  
+        const { name, description } =
+          activity;
+
+          
+        
+              return(
+                <div className="activity">
+                <h1>{activity.name}</h1>
+              <p>{activity.description}</p>
+              </div>
+              )
+            })}
+              
+            
+>>>>>>> 208cfbd490d8d9b1d50ec567fa4caf61572654a4
             
         </div>
     )
