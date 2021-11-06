@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom"
 import { registerUser } from "../api";
 import { storeToken} from "../auth";
 
+
 export default function Register({setIsLoggedIn}) {
     const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +26,7 @@ export default function Register({setIsLoggedIn}) {
               setUserName("");
               setPassword("");
               history.push("/myroutines");
+              alert("you are registered!")
             } catch (error) {
               console.log(error);
             } 

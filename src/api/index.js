@@ -36,27 +36,19 @@ export async function loginUser(username, password) {
   }
 }
 
-// GET TOKEN
-
-// const fetchToken = () => {
-// const token = JSON.parse(localStorage.getItem("token"))
-// return token ? token : ''
-// }
-
-// GET "ME"
 
 export async function fetchMe() {
   const token = getToken();
 
   try {
-    const response = await fetch(`${BASE}/api/users/me`, {
+    const {data} = await axios.post(`${BASE}/api/users/me`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
-    const result = await response.json();
-    return result;
+    console.log(data)
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -168,16 +160,23 @@ export async function fetchRoutines() {
 
 export async function createNewRoutine(name, goal, isPublic) {
   try {
-    const response = await fetch(`${BASE}/api/routines`, {
+    const data = await fetch(`${BASE}/api/routines`, {
       method: "POST",
-      body: JSON.stringify({
-        name: name,
-        goal: goal,
-        isPublic: isPublic,
-      }),
-    });
-    const result = await response.json();
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+  body: JSON.stringify({
+   post: {
+    name: name,
+    goal: goal,
+    isPublic: isPublic,}
+  })
+}).then(response => response.json())
+  .then(result => {
     return result;
+  })
+return data
   } catch (error) {
     console.log(error);
   }
@@ -264,30 +263,3 @@ export async function fetchMyRoutines(username) {
     console.log(error);
   }
 }
-
-// export async function getUsers() {
-//   try {
-//     const { data } = await axios.get(`${ BASE }/users`);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
-
-// export async function getPostsByUser(userId) {
-//   try {
-//     const { data } = await axios.get(`${ BASE }/users/${ userId }/posts`);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
-
-// export async function getTodosByUser(userId) {
-//   try {
-//     const { data } = await axios.get(`${ BASE }/users/${ userId }/todos`);
-//     return data;
-//   } catch (error) {
-//     throw error;
-//   }
-// }

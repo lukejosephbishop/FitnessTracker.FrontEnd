@@ -34,11 +34,11 @@ export default function Navbar(props) {
               }
             }}
           >
-            {isLoggedIn ? "LogOut" : "LogIn"}
+            {isLoggedIn ? "LogOut" : "LogIn/SignUp"}
           </Link>
         ) : (
           <Link className="links" to="/login">
-            LogIn
+            Login/SignUp
           </Link>
         )}
       </div>

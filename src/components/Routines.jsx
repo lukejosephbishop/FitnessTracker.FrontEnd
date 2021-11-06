@@ -43,7 +43,7 @@ setIsLoggedIn,
   
             onClick={(event) => {
               event.preventDefault();
-              window.location.href = "/newpost";
+              window.location.href = "/newroutine";
             }}
           >
             {" "}
@@ -68,8 +68,7 @@ setIsLoggedIn,
 
           const activityName = activities.name;
           const activityDescription = activities.description;
-          // const activityDuration = activities.duration;
-          // const activityCount = activities.count;
+        
         return (
           <div className="routine" key={`routine-${indx}`}>
             <div> 
@@ -93,7 +92,7 @@ setIsLoggedIn,
                   <button
                     className="submit-button"
                     onClick={(event) => {
-                      storeRoutineId(_id);
+                      storeRoutineId(id);
                     }}
                   >
                     Send Message
