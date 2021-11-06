@@ -39,7 +39,7 @@ const {setIsLoggedIn, isPublic, setIsPublic } = props
               setGoal("");
               setIsPublic(false);
     
-              history.push("/myroutine");
+              history.push("/myroutines");
               alert("New Workout Made!");
             } catch (error) {
               console.log(error);

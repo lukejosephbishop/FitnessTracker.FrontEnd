@@ -1,10 +1,10 @@
 // import axios from 'axios';
 import axios from "axios";
-import { storeToken, getToken, clearCurrentUser } from "../auth";
+import { storeToken, getToken, clearCurrentUser, getUserName } from "../auth";
 
 export const BASE = "https://fitnesstrac-kr.herokuapp.com";
 
-// REGISTER A USER
+
 
 export async function registerUser(username, password) {
   try {
@@ -39,16 +39,18 @@ export async function loginUser(username, password) {
 
 export async function fetchMe() {
   const token = getToken();
-
+// const username = getUserName();
   try {
-    const {data} = await axios.post(`${BASE}/api/users/me`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(data)
-    return data;
+  const response = await fetch(`${BASE}/api/users/me`, {
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`
+  },
+})
+
+const result = await response.json();
+console.log(result)
+return result
   } catch (error) {
     console.log(error);
   }
@@ -209,14 +211,16 @@ export async function deleteRoutine(routineId) {
 
   try {
     const response = await fetch(`${BASE}/api/routines/${routineId}`, {
-      method: "DELETE",
-      body: JSON.stringify({
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      }),
-    });
+
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
     const result = await response.json();
-    return result;
+    
+    return result.data
   } catch (error) {
     console.log(error);
   }

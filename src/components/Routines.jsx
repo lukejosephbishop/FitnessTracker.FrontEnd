@@ -49,16 +49,11 @@ setIsLoggedIn,
             {" "}
             Create Routine
           </button>
-          <button
-            className="edit-myRoutiness"
-            onClick={(event) => {
-              event.preventDefault();
-              window.location.href = "/myroutines";
-            }}
-          >
-            {" "}
-            Edit my Routine
-          </button>
+          <Link to={`/myroutines`}>
+                <button>
+                  Edit My Routines
+                </button>
+              </Link>
         </div>
       ) : null}
       {defaultRoutines.map((routines, indx) => {
@@ -66,8 +61,6 @@ setIsLoggedIn,
         const { id, creatorId, creatorName, isPublic, name, goal, activities } =
           routines;
 
-          const activityName = activities.name;
-          const activityDescription = activities.description;
         
         return (
           <div className="routine" key={`routine-${indx}`}>

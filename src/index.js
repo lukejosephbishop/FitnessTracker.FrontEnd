@@ -18,6 +18,8 @@ import {
   MyRoutines,
   Register,
   Routines,
+  EditMyRoutine,
+  EditMyActivity
 } from "./components";
 
 
@@ -51,8 +53,7 @@ const App = () => {
             setIsPublic={setIsPublic}
             searchWord={searchWord}
             setSearchWord={setSearchWord}
-            setRoutineId={setRoutineId}
-            routineId={routineId}
+            
             userName={userName}
             defaultRoutines={defaultRoutines}
             setDefaultRoutines={setDefaultRoutines}
@@ -65,7 +66,10 @@ const App = () => {
              setDefaultActivities={setDefaultActivities}/>
         </Route>
         <Route path="/myroutines">
-          <MyRoutines setIsLoggedIn={setIsLoggedIn}/>
+          <MyRoutines setIsLoggedIn={setIsLoggedIn}
+          setRoutineId={setRoutineId}
+          routineId={routineId}
+          />
           </Route>
           <Route path="/newroutine">
           <NewRoutine
@@ -75,6 +79,11 @@ const App = () => {
             isPublic={isPublic}
             setIsPublic={setIsPublic}
           />
+        </Route>
+        <Route>
+          <EditMyRoutine
+          setRoutineId={setRoutineId}
+          routineId={routineId}/>
         </Route>
           <Route path="/activities">
           <Activities 
