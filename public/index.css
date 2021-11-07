@@ -39,10 +39,23 @@ body .welcome {
   flex-direction: column;
   justify-content: center;
 }
+.imgContainer .content .routine-actionbuttons button {
+  cursor: pointer;
+}
+
+.imgContainer .content .routine button {
+  cursor: pointer;
+}
+
+.imgContainer {
+  background-image: url(https://i.pinimg.com/474x/61/8b/90/618b9024f999630bb9bbfa00396133d7.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 .content .searchbar {
   margin: 20px;
-  /* background-color: #333; */
   padding: 10px;
 }
 
@@ -64,7 +77,20 @@ body .welcome {
   margin-bottom: 1rem;
 }
 
+/* MYROUTINES */
+
+.routine button {
+  cursor: pointer;
+}
+
 /* ACTIVITY */
+
+.activitiesImg {
+  background-image: url(https://image.shutterstock.com/image-vector/illustration-barbell-engraving-style-design-260nw-1775653457.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 .activity {
   background-color: grey;
@@ -77,30 +103,38 @@ body .welcome {
 /* LOGIN/SIGNUP */
 
 .login-form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.login-form .login-container button {
+  cursor: pointer;
 }
 
 .login-container .usernameLogin {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .login-container .usernameLogin label {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .login-container .passwordLogin {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .login-container .passwordLogin label {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 /* REGISTER */
 
 .container .registerUsername label {
-    margin-right: 1rem;
+  margin-right: 1rem;
+}
+
+.container button {
+  cursor: pointer;
 }

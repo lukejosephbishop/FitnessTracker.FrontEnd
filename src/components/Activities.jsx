@@ -19,7 +19,7 @@ export default function Activities(props) {
   }, []);
 
   return (
-    <div>
+    <div className="activitiesImg">
         {isLoggedIn === true ?
       <button
         onClick={(event) => {

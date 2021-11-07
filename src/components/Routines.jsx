@@ -31,6 +31,7 @@ setIsLoggedIn,
 
 
   return (
+    <div className="imgContainer">
     <div className="content">
       <div className="searchbar">
       <Search
@@ -99,6 +100,7 @@ setIsLoggedIn,
           </div>
         );
       })}
+    </div>
     </div>
   );
 }
