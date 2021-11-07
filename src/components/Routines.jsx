@@ -51,16 +51,7 @@ setIsLoggedIn,
             {" "}
             Create Routine
           </button>
-          <button
-  
-            onClick={(event) => {
-              event.preventDefault();
-              window.location.href = "/newactivity";
-            }}
-          >
-            {" "}
-            Create Activity
-          </button>
+          
           <Link to={`/myroutines`}>
                 <button>
                   Edit My Routines

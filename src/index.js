@@ -50,7 +50,11 @@ const App = () => {
         <Route path="/routines/:routineId">
           <EditMyRoutine 
           setRoutineId={setRoutineId}
-          routineId={routineId}/>
+          routineId={routineId}
+          setIsLoggedIn={setIsLoggedIn}
+          isPublic={isPublic}
+            setIsPublic={setIsPublic}/>
+
         </Route>
         <Route path="/routines">
           <Routines
@@ -87,6 +91,7 @@ const App = () => {
         </Route>
           <Route path="/activities">
           <Activities 
+          isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           defaultActivities={defaultActivities}
           setDefaultActivities={setDefaultActivities}/> 
@@ -96,7 +101,7 @@ const App = () => {
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
             setIsLoggedIn={setIsLoggedIn}
-            
+            defaultActivities={defaultActivities}
             setIsPublic={setIsPublic}
           />
           </Route>

@@ -30,14 +30,15 @@ if (isLoggedIn === false) {
         
           try {
             const results = await loginUser(userName, password);
-            console.log(results, "!!!!!!")
+            console.log(results.message, "!!!!!!")
             storeToken(results.token);
             storeUserName(userName);
             setIsLoggedIn(true);
             setPassword("");
     
             history.push("/myroutines");
-            alert("you are logged in!")
+            
+            alert(`${results.message}`)
           } catch (error) {
             console.log(error);
           } 

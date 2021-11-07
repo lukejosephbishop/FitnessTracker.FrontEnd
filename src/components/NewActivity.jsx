@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router';
 import { getToken } from '../auth';
+import { createNewActivity } from "../api";
+
 export default function NewActivity(props) {
-    const {setIsLoggedIn, isPublic, setIsPublic } = props
+    const {setIsLoggedIn, isPublic, setIsPublic, defaultActivities } = props
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -17,6 +19,18 @@ export default function NewActivity(props) {
         }
       }, []);
 
+      function activityExists(name){
+      const activityName = defaultActivities.forEach((activity)=>{
+
+        if (activity.name = name){
+            alert('Activity already created!')
+        } else{
+            alert("New Activity Made!");
+            history.push("/activities");
+        }
+      })
+    }
+
     return (
         <form
           className="activity"
@@ -24,7 +38,7 @@ export default function NewActivity(props) {
             event.preventDefault();
         
             try {
-              const results = await createNewRoutine(
+              const results = await createNewActivity(
                 name,
                 description
                 
@@ -32,10 +46,12 @@ export default function NewActivity(props) {
     
               setName("");
               setDescription("");
+              activityExists(name)
               history.push("/activities");
-              alert("New Activity Made!");
-            } catch (error) {
-              console.log(error);
+              
+            } catch (res) {
+                setError(res.error)
+                
             } 
           }}
         >

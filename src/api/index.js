@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import axios from "axios";
-import { storeToken, getToken, clearCurrentUser, getUserName } from "../auth";
+import { storeToken, getToken, clearCurrentUser, getUserName, getRoutineId } from "../auth";
 
 export const BASE = "https://fitnesstrac-kr.herokuapp.com";
 
@@ -24,15 +24,15 @@ export async function registerUser(username, password) {
 
 export async function loginUser(username, password) {
   try {
-    const {data} = await axios
+    const response = await axios
       .post(`${BASE}/api/users/login`, {
         username,
         password,
       })
-      console.log(data)
-    return data;
+      
+    return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 }
 
@@ -81,24 +81,29 @@ export async function fetchActivities() {
 
 // POST AN ACTIVITY
 
-export async function addActivity(name, description) {
-  const token = getToken();
+export async function createNewActivity(name, description) {
+  const TOKEN = getToken();
   try {
-    const resonse = await fetch(`${BASE}/api/activities`, {
+    const data = await fetch(`${BASE}/api/activities`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${TOKEN}`,
       },
-      body: JSON.stringify({
-        name: name,
-        description: description,
-      }),
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
+  body: JSON.stringify(
+   {
+    name: name,
+    description: description,}
+  )
+}).then(response => response.json())
+  .then(result => {
+    console.log(result)
+    
+    alert(`${result.message}`)
+  });
+return data
+  } catch (error){
+console.log(error)
   }
 }
 
@@ -108,7 +113,7 @@ export async function updateActivity(name, description, id) {
   const token = getToken();
 
   try {
-    const response = await fetch(`${BASE}/api/activities/${id}`, {
+    const data = await fetch(`${BASE}/api/activities/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -118,9 +123,11 @@ export async function updateActivity(name, description, id) {
         name: name,
         description: description,
       }),
-    });
-    const result = await response.json();
-    return result;
+    }).then(response => response.json())
+    .then(result => {
+      return result;
+    })
+  return data
   } catch (error) {
     console.log(error);
   }
@@ -162,6 +169,7 @@ export async function fetchRoutines() {
 
 export async function createNewRoutine(name, goal, isPublic) {
   const TOKEN = getToken();
+  
   try {
     const data = await fetch(`${BASE}/api/routines`, {
       method: "POST",
@@ -188,19 +196,28 @@ return data
 // EDIT ROUTINE
 
 export async function editRoutine(name, goal, isPublic, routineId) {
+  const token = getToken();
+  const id = getRoutineId();
+  console.log(id)
   try {
-    const response = await fetch(`${BASE}/api/routines/${routineId}`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        name: name,
-        goal: goal,
-        isPublic: isPublic,
-      }),
-    });
-    const result = await response.json();
-    return result;
+    const { data } = await axios.patch(
+      `${BASE}/routines/${id}`,
+      {
+        name,
+        goal,
+        isPublic,
+      },
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(data)
+    return data
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }
 
