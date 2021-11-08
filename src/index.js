@@ -19,9 +19,9 @@ import {
   Register,
   Routines,
   EditMyRoutine,
-  EditMyActivity
+  EditMyActivity,
 } from "./components";
-
+import EditRoutineActivity from "./components/EditRoutineActivity";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,32 +29,41 @@ const App = () => {
   const [userName, setUserName] = useState("");
   const [searchWord, setSearchWord] = useState("");
   const [routineId, setRoutineId] = useState("");
-
+  const [routineActivityId, setRoutineActivityId] = useState("");
   const [defaultRoutines, setDefaultRoutines] = useState([]);
 
   const [defaultActivities, setDefaultActivities] = useState([]);
- 
-  
+
   const [isPublic, setIsPublic] = useState(false);
   return (
     <div id="App">
-      <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
+      <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       <Switch>
         <Route path="/login">
-          <Login userName={userName} setUserName={setUserName} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>
+          <Login
+            userName={userName}
+            setUserName={setUserName}
+            setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
+          />
         </Route>
 
         <Route path="/register">
-          <Register setIsLoggedIn = {setIsLoggedIn}/>
+          <Register setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/routines/:routineId">
-          <EditMyRoutine 
-          setRoutineId={setRoutineId}
-          routineId={routineId}
-          setIsLoggedIn={setIsLoggedIn}
-          isPublic={isPublic}
-            setIsPublic={setIsPublic}/>
-
+          <EditMyRoutine
+            setRoutineId={setRoutineId}
+            routineId={routineId}
+            setIsLoggedIn={setIsLoggedIn}
+            isPublic={isPublic}
+            setIsPublic={setIsPublic}
+            defaultActivities={defaultActivities}
+            setDefaultActivities={setDefaultActivities}
+          />
+        </Route>
+        <Route path="/routine_activity/:routineActivityId">
+          <EditRoutineActivity routineActivityId={routineActivityId} setIsLoggedIn={setIsLoggedIn} setDefaultRoutines={setDefaultRoutines} defaultRoutines={defaultRoutines} />
         </Route>
         <Route path="/routines">
           <Routines
@@ -62,7 +71,6 @@ const App = () => {
             setIsPublic={setIsPublic}
             searchWord={searchWord}
             setSearchWord={setSearchWord}
-            
             userName={userName}
             defaultRoutines={defaultRoutines}
             setDefaultRoutines={setDefaultRoutines}
@@ -70,17 +78,20 @@ const App = () => {
             setIsLoggedIn={setIsLoggedIn}
             setSearchWord={setSearchWord}
             searchWord={searchWord}
-          
             defaultActivities={defaultActivities}
-             setDefaultActivities={setDefaultActivities}/>
+            setDefaultActivities={setDefaultActivities}
+          />
         </Route>
         <Route path="/myroutines">
-          <MyRoutines setIsLoggedIn={setIsLoggedIn}
-          setRoutineId={setRoutineId}
-          routineId={routineId}
+          <MyRoutines
+            setIsLoggedIn={setIsLoggedIn}
+            setRoutineId={setRoutineId}
+            routineId={routineId}
+            setRoutineActivityId={setRoutineActivityId}
+            routineActivityId={routineActivityId}
           />
-          </Route>
-          <Route path="/newroutine">
+        </Route>
+        <Route path="/newroutine">
           <NewRoutine
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
@@ -89,12 +100,13 @@ const App = () => {
             setIsPublic={setIsPublic}
           />
         </Route>
-          <Route path="/activities">
-          <Activities 
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          defaultActivities={defaultActivities}
-          setDefaultActivities={setDefaultActivities}/> 
+        <Route path="/activities">
+          <Activities
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+            defaultActivities={defaultActivities}
+            setDefaultActivities={setDefaultActivities}
+          />
         </Route>
         <Route path="/newactivity">
           <NewActivity
@@ -104,7 +116,7 @@ const App = () => {
             defaultActivities={defaultActivities}
             setIsPublic={setIsPublic}
           />
-          </Route>
+        </Route>
         <Route path="/">
           {" "}
           <Home />

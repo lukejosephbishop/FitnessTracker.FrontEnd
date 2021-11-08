@@ -82,21 +82,6 @@ setIsLoggedIn,
               )
             })}
               </div>
-            
-            {(userName != creatorName) & (isLoggedIn === true) ? (
-              <div>
-                <Link to={`/routines/${creatorName}`}>
-                  <button
-                    className="submit-button"
-                    onClick={(event) => {
-                      storeRoutineId(id);
-                    }}
-                  >
-                    Send Message
-                  </button>
-                </Link>
-              </div>
-            ) : null}
           </div>
         );
       })}
