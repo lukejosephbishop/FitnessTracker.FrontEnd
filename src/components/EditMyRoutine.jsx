@@ -9,7 +9,6 @@ import { useHistory } from "react-router";
 import {
   getToken,
   storeRoutineId,
-  getRoutineId,
   clearRoutineId,
 } from "../auth";
 
@@ -19,9 +18,7 @@ export default function EditMyRoutine(props) {
     defaultActivities,
     setDefaultActivities,
     setIsLoggedIn,
-
     isPublic,
-    setIsPublic,
   } = props;
 
   const [editName, setEditName] = useState("");
@@ -78,7 +75,7 @@ export default function EditMyRoutine(props) {
 
             try {
               const results = await editRoutine(editName, editGoal);
-              console.log(activityId)
+              console.log(activityId);
               await createNewRoutineActivity(activityId, count, duration);
               setEditName("");
               setEditGoal("");

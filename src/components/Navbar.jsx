@@ -1,12 +1,22 @@
-import React from "react";
-
-import { Redirect, Link, useHistory } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { fetchMyRoutines } from "../api";
+import { Link } from "react-router-dom";
 import { clearCurrentUser, clearUserName, getToken} from "../auth";
+
 
 export default function Navbar(props) {
     const { isLoggedIn, setIsLoggedIn } = props
-  const history = useHistory();
 
+    const [personalData, setPersonalData] = useState([])
+
+    useEffect(async () => {
+      const TOKEN = getToken();
+      if (TOKEN) {
+        setIsLoggedIn(true);
+      }
+      const routines = await fetchMyRoutines();
+      setPersonalData(routines);
+    }, []);
 
   return (
     <nav className="navbar">
@@ -14,11 +24,11 @@ export default function Navbar(props) {
         <Link className="links" to="/">Home</Link>
         <Link className="links" to="/routines">Routines</Link>
         <Link className="links" to="/activities">Activities</Link>
-        {isLoggedIn ? (
+        {isLoggedIn  ? 
           <Link className="links" to="/myroutines">
             MyRoutines
           </Link>
-        ) : null}
+         : null}
         {isLoggedIn ? (
           <Link
             className="links"

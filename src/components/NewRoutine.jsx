@@ -1,81 +1,72 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 
 import { createNewRoutine } from "../api";
-import { getToken } from '../auth';
+import { getToken } from "../auth";
 import { useHistory } from "react-router-dom";
 
-
 export default function NewRoutine(props) {
-const {setIsLoggedIn, isPublic, setIsPublic } = props
+  const { setIsLoggedIn, isPublic, setIsPublic } = props;
 
-    const [name, setName] = useState("");
-    const [goal, setGoal] = useState("");
+  const [name, setName] = useState("");
+  const [goal, setGoal] = useState("");
 
-    const history = useHistory();
-    
+  const history = useHistory();
 
-    useEffect(() => {
-        const TOKEN = getToken();
-        if (TOKEN) {
-          setIsLoggedIn(true);
+  useEffect(() => {
+    const TOKEN = getToken();
+    if (TOKEN) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  return (
+    <form
+      className="routine"
+      onSubmit={async (event) => {
+        event.preventDefault();
+
+        try {
+          const results = await createNewRoutine(name, goal, isPublic);
+
+          setName("");
+          setGoal("");
+          setIsPublic(false);
+
+          history.push("/myroutines");
+          alert("New Workout Made!");
+        } catch (error) {
+          console.log(error);
         }
-      }, []);
+      }}
+    >
+      <h1> Create New Routine</h1>
+      <div></div>
 
-    return (
-        <form
-          className="routine"
-          onSubmit={async (event) => {
-            event.preventDefault();
-        
-            try {
-              const results = await createNewRoutine(
-                name,
-                goal,
-                isPublic,
-                
-              );
-    
-              setName("");
-              setGoal("");
-              setIsPublic(false);
-    
-              history.push("/myroutines");
-              alert("New Workout Made!");
-            } catch (error) {
-              console.log(error);
-            } 
+      <div>
+        <label htmlFor="Name">Workout Name</label>
+        <input
+          type="text"
+          name="workout name"
+          placeholder="name"
+          value={name}
+          onChange={(event) => {
+            setName(event.target.value);
           }}
-        >
-          <h1> Create New Routine</h1>
-          <div>
-            
-          </div>
-    
-          <div >
-            <label htmlFor="Name">Workout Name</label>
-            <input
-              type="text"
-              name="workout name"
-              placeholder="name"
-              value={name}
-              onChange={(event) => {
-                setName(event.target.value);
-              }}
-              required
-            ></input>
-            <label htmlFor="goal">Goal</label>
-            <input
-              type="text"
-              name="goal"
-              placeholder="goal"
-              value={goal}
-              onChange={(event) => {
-                setGoal(event.target.value);
-              }}
-              required
-            ></input>
+          required
+        ></input>
+        <label htmlFor="goal">Goal</label>
+        <input
+          type="text"
+          name="goal"
+          placeholder="goal"
+          value={goal}
+          onChange={(event) => {
+            setGoal(event.target.value);
+          }}
+          required
+        ></input>
 
-            <label className="checkbox">
+        <label className="checkbox">
           Make Public?
           <input
             type="checkbox"
@@ -83,9 +74,7 @@ const {setIsLoggedIn, isPublic, setIsPublic } = props
             name="isPublic"
             value={true}
             onChange={(event) => {
-              
-                setIsPublic(true);
-              
+              setIsPublic(true);
             }}
           />{" "}
           Yes
@@ -95,17 +84,15 @@ const {setIsLoggedIn, isPublic, setIsPublic } = props
             name="isPublic"
             value={false}
             onChange={(event) => {
-             
-                setIsPublic(false);
-              
+              setIsPublic(false);
             }}
           />{" "}
           No
         </label>
-              <button className="submit-button" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
-    );
+        <button className="submit-button" type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
+  );
 }

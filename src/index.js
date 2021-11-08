@@ -19,7 +19,7 @@ import {
   Register,
   Routines,
   EditMyRoutine,
-  EditMyActivity,
+  
 } from "./components";
 import EditRoutineActivity from "./components/EditRoutineActivity";
 

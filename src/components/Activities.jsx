@@ -4,7 +4,7 @@ import { fetchActivities } from "../api";
 import { getToken } from "../auth";
 
 export default function Activities(props) {
-  const { setSearchWord, searchWord, setDefaultActivities, defaultActivities, isLoggedIn, setIsLoggedIn } =
+  const { setDefaultActivities, defaultActivities, isLoggedIn, setIsLoggedIn } =
     props;
 
   useEffect(async () => {
@@ -15,21 +15,22 @@ export default function Activities(props) {
     if (TOKEN) {
       setIsLoggedIn(true);
     }
-    console.log(isLoggedIn)
+    console.log(isLoggedIn);
   }, []);
 
   return (
     <div className="activitiesImg">
-        {isLoggedIn === true ?
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          window.location.href = "/newactivity";
-        }}
-      >
-        {" "}
-        Create Activity
-      </button>: null}
+      {isLoggedIn === true ? (
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            window.location.href = "/newactivity";
+          }}
+        >
+          {" "}
+          Create Activity
+        </button>
+      ) : null}
       {defaultActivities.map((activity, indx) => {
         return (
           <div className="activity" key={`activity-${indx}`}>

@@ -14,7 +14,7 @@ export default function MyRoutines({ setIsLoggedIn, setRoutineId, routineId, set
       setIsLoggedIn(true);
     }
     const myData = await fetchMyRoutines(userName);
-    console.log(myData);
+    
     setPersonalData(myData);
   }, []);
 
@@ -49,7 +49,7 @@ export default function MyRoutines({ setIsLoggedIn, setRoutineId, routineId, set
                           setRoutineId(id);
                         }}
                       >
-                        Edit Routine
+                        Edit Routine/Add Activity
                       </button>
                     </Link>
 

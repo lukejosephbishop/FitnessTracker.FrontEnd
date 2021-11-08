@@ -1,10 +1,9 @@
 // import axios from 'axios';
 import axios from "axios";
 import {
-  storeToken,
+
   getToken,
-  clearCurrentUser,
-  getUserName,
+  
   getRoutineId,
 } from "../auth";
 
@@ -12,12 +11,12 @@ export const BASE = "https://fitnesstrac-kr.herokuapp.com";
 
 export async function registerUser(username, password) {
   try {
-    const { data } = await axios.post(`${BASE}/api/users/register`, {
+    const response = await axios.post(`${BASE}/api/users/register`, {
       username,
       password,
     });
 
-    return data;
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -99,12 +98,16 @@ export async function createNewActivity(name, description) {
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-
-        alert(`${result.message}`);
+        if(result.error){
+alert(`${result.error}`);
+        } else {
+          alert("You have created a New Activity!");
+        }
+       
       });
     return data;
   } catch (error) {
-    console.log(error);
+    alert(err.message);
   }
 }
 
@@ -285,9 +288,14 @@ export async function fetchMyRoutines(username) {
 }
 
 export async function updateRoutineActivity(count, duration, routineActivityId) {
+  const TOKEN = getToken();
   try {
   fetch(`${BASE}/api/routine_activities/${routineActivityId}`, {
     method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${TOKEN}`,
+    },
     body: JSON.stringify({
       count,
       duration
